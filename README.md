@@ -8,19 +8,22 @@ This is a one player blackjack game.
 
 How It's Made: 
 
-I started this project by building the conditional statement that checks when the sum of the cards is more than 21 changing the variable isAlavie which if set to false would stop the game and won't allow for more card to be drawn. Then an array was introduced to be able to sum all the subsequent cards to the initial hand.
-This was first hard coded into the app but then after making sure everithing was working correctly the randomization function was added in. 
+<img align="left" alt="HTML" width="25px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain-wordmark.svg"/>
+<img align="left" alt="CSS" width="25px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain-wordmark.svg" />
+<img align="left" alt="JavaScript" width="25px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
+<br>
+
 #
 
 Optimizations: 
 
-Furder optimization could be included with a better UI and the use of an API to display image of the card that are been drawn. Furthermore a log in feature with the a fake beting sistem will also help improve the game experience.
+Further optimization could be included with a better UI and the use of an API to display image of the card that are been drawn. Furthermore, a log in feature with a fake betting system will also help improve the game experience.
 
 #
 
 Lessons Learned: 
 
-Thanks to this project I was able to improve and put into practice: array manipulation, bulian, conditionals, objects. The easy way to create randomization with the Math. method.
+Thanks to this project I was able to improve and put into practice: array manipulation, Boolean, conditionals, objects. The easy way to create randomization with the Math. method.
 
  
 
