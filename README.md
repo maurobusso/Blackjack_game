@@ -1,2 +1,2 @@
 # Blackjack_game
-Single player blackjack game
+This is a one player blackjack game.
