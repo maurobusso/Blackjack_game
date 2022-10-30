@@ -17,7 +17,7 @@ How It's Made:
 
 Optimizations: 
 
-Further optimization could be included with a better UI and the use of an API to display image of the card that are been drawn. Furthermore, a log in feature with a fake betting system will also help improve the game experience.
+Further optimization could included a better UI and the use of an API to display image of the card that are been drawn. Furthermore, a log in feature with a fake betting system will also help improve the game experience.
 
 #
 
