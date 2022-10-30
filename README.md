@@ -4,7 +4,7 @@ This is a one player blackjack game.
 
 <a href="https://blackjack-game-mauro.netlify.app">Play now</a>
 
-<img width="700px" heigth="900" src="https://github.com/maurobusso/Blackjack_game/blob/main/blackjack.png">
+<img width="700px" heigth="900" src="https://github.com/maurobusso/Blackjack_game/blob/main/Game.png">
 
 #
 
