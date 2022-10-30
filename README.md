@@ -12,6 +12,7 @@ How It's Made:
 <img align="left" alt="CSS" width="25px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain-wordmark.svg" />
 <img align="left" alt="JavaScript" width="25px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
 <br>
+<br>
 This project was started by building the core function of the game, which is a conditional statement, checking what is the sum of the card in the hand of the player and giving a response accordingly. This was first tried with hard coded value then the function in charge of randomize the card was implemented. 
 
 #
