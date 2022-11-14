@@ -1,6 +1,6 @@
 # Blackjack game
 
-This is a one player blackjack game.
+This is a one player blackjack game. 
 
 <a href="https://blackjack-game-mauro.netlify.app">Play now</a>
 
