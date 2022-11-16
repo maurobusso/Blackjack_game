@@ -52,12 +52,12 @@ function runGame(){
 
     sumEl.textContent = "sum: " + sum 
     if (sum <= 20){
-        message = "do you want a new card?"
+        message = "New Card?"
     }else if ( sum === 21){
-        message = "you've Blackjack"
+        message = "You have Blackjack!!"
         hasBlackjack = true
     }else {
-        message = "you're out"
+        message = "Sorry you are out"
         isAlive = false       
     } 
     messageEl.textContent = message
