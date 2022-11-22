@@ -15,13 +15,13 @@ How It's Made:
 <img align="left" alt="JavaScript" width="25px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
 <br>
 <br>
-This project was started by building the core function of the game, which is a conditional statement, checking what is the sum of the card in the hand of the player and giving a response accordingly. This was first tried with hard coded value then the function in charge of randomize the card was implemented. 
+I have built this project as a part of a module on the "Learn JavaScript" course from the Scrimba. It was first started by the core function of the game, which checks what is the sum of the card in the hand of the player and give a response accordingly. This was first tried with hard coded value then the function in charge of randomize the card was implemented. Some refactoring has been done from the original version, such as different design and code solution that differ slightly from the Scrimba version simply because that was the way I came up with and it was still working and also simple changes in the readability of the code.
 
 #
 
 Optimizations: 
 
-Further optimization could included a better UI and the use of an API to display image of the card that are been drawn. Furthermore, a log in feature with a fake betting system will also help improve the game experience.
+Further optimization could included a better UI and the use of an API for the derck of cards. Furthermore, a log in feature with a fake betting system could also help improve the game experience.
 
 #
 
