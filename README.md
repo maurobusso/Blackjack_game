@@ -1,6 +1,6 @@
 # Blackjack game
 
-This is a one player blackjack game. 
+This is a one player blackjack game. I have built this project as a part of a module on the "Learn JavaScript" course from the Scrimba. 
 
 <a href="https://blackjack-game-mauro.netlify.app">Play now</a>
 
@@ -15,7 +15,7 @@ How It's Made:
 <img align="left" alt="JavaScript" width="25px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
 <br>
 <br>
-I have built this project as a part of a module on the "Learn JavaScript" course from the Scrimba. It was first started by the core function of the game, which checks what is the sum of the card in the hand of the player and give a response accordingly. This was first tried with hard coded value then the function in charge of randomize the card was implemented. Some refactoring has been done from the original version, such as different design and code solution that differ slightly from the Scrimba version simply because that was the way I came up with and it was still working and also simple changes in the readability of the code.
+It was first started by the core function of the game, which checks what is the sum of the card in the hand of the player and give a response accordingly. This was first tried with hard coded value then the function in charge of randomize the card was implemented. Some refactoring has been done from the original version, such as different design and code solution that differ slightly from the Scrimba version simply because that was the way I came up with and it was still working and also simple changes in the readability of the code.
 
 #
 
