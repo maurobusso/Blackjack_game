@@ -3,6 +3,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-image:url("blackjack-table.png") ;
+    
     margin-top: 10%;
     text-align: center;
     color: black;
@@ -43,8 +44,14 @@ button {
     cursor: pointer;
 }
 
-@media (min-width: 40em) {
-    
+@media (max-width: 350px ) {
+    #container{
+        border: 1px solid black;
+        max-width: 90%;
+        max-height: 90%;
+        margin: 0 auto;
+        background-color: teal;
+    }
 }
 
 /* 375 x 667 */
