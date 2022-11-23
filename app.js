@@ -1,9 +1,3 @@
-
-let player = {
-    name: "name",
-    chips: "£100"
-}
-
 let hand = []
 let sum = 0
 let hasBlackjack = false
@@ -15,6 +9,13 @@ let sumEl = document.querySelector('.sum-el')
 let cardsEl = document.querySelector('.cards-el')
 let newCardBtn = document.querySelector('.new-card')
 let playerEl = document.querySelector('.player-el')
+
+
+//Player object for future feature
+let player = {
+    name: "name",
+    chips: "£100"
+}
 
 playerEl.textContent = player.name +': '+ player.chips
 
@@ -33,6 +34,8 @@ function getRandomCard(){
     return randomCard
     }    
 }
+
+//The method Math.random give a value between o and 0.999999999 by moltyply * 13 and adding 13 and using Math.floor it gives us a number between 0 and 13. that would work for any range of numbers.
 
 function startGame(){
     isAlive = true
