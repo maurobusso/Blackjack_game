@@ -1,19 +1,27 @@
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-size: cover;
-    background-repeat: no-repeat;
     background-image:url("blackjack-table.png") ;
-    
     margin-top: 10%;
     text-align: center;
     color: black;
-    font-weight: bold;
-    
+    font-weight: bold; 
+    /* height: 100%; */
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+#background{
+    height: 100%;
+    background-image:url("blackjack-table.png") ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #container{
     border: 5px solid black;
     max-width: 30%;
+    max-height: 100%;
     margin: 0 auto;
     background-color: teal;
 }
@@ -44,13 +52,15 @@ button {
     cursor: pointer;
 }
 
-@media (max-width: 350px ) {
-    #container{
-        border: 1px solid black;
-        max-width: 90%;
-        max-height: 90%;
-        margin: 0 auto;
+@media only screen and (max-width: 500px ) {
+    body{
+        background-image: none;
         background-color: teal;
+        margin-top: 10%;
+        max-height: 100%;
+    }
+    #container{
+        width: 100%; 
     }
 }
 
