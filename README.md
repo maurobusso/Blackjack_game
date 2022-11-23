@@ -4,7 +4,7 @@ This is a one player blackjack game. I have built this project as a part of a mo
 
 <a href="https://blackjack-game-mauro.netlify.app">Play now</a>
 
-<img width="700px" heigth="900" src="https://github.com/maurobusso/Blackjack_game/blob/main/Game.png">
+<img width="700px" heigth="900" src="https://github.com/maurobusso/Blackjack_game/blob/main/img.png">
 
 #
 
@@ -15,7 +15,10 @@ How It's Made:
 <img align="left" alt="JavaScript" width="25px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
 <br>
 <br>
-It was first started by the core function of the game, which checks what is the sum of the card in the hand of the player and give a response accordingly. This was first tried with hard coded value then the function in charge of randomize the card was implemented. Some refactoring has been done from the original version, such as different design and code solution that differ slightly from the Scrimba version simply because that was the way I came up with and it was still working and also simple changes in the readability of the code.
+It was first started by the core function of the game, which checks what is the sum of the card in the hand of the player and give a response accordingly. This was first tried with hard coded value then the function in charge of randomize the card was implemented. Some refactoring has been done from the original version, such as: </br>
+</br>-Different design.
+</br>-Added a more responsive design.
+</br>-Improvement in code redability and some comments added to explain some of the code.
 
 #
 
@@ -27,7 +30,7 @@ Further optimization could included a better UI and the use of an API for the de
 
 Lessons Learned: 
 
-Thanks to this project I was able to improve and put into practice: array manipulation, Boolean, conditionals, objects. The easy way to create randomization with the Math. method.
+Thanks to this project I was able to improve and put into practice: array manipulation, Boolean, conditionals, objects. The easy way to create randomization with the Math. method. I was also able to integrate a responsive design with CSS.
 
  
 
