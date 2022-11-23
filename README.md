@@ -30,7 +30,7 @@ Further optimization could included a better UI and the use of an API for the de
 
 Lessons Learned: 
 
-Thanks to this project I was able to improve and put into practice: array manipulation, Boolean, conditionals, objects. The easy way to create randomization with the Math. method. I was also able to integrate a responsive design with CSS and the use of media query.
+Thanks to this project I was able to improve and put into practice: array manipulation, Boolean, conditionals, objects. The easy way to create randomization with the Math. method. I was also able to integrate a responsive design with CSS.
 
  
 
