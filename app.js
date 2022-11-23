@@ -57,7 +57,7 @@ function runGame(){
         message = "You have Blackjack!!"
         hasBlackjack = true
     }else {
-        message = "Sorry you are out"
+        message = "YOU ARE OUT!!"
         isAlive = false       
     } 
     messageEl.textContent = message
