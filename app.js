@@ -65,7 +65,12 @@ function getRandomCard() {
         .then(data => {
             console.log(data)
             div.appendChild(img)
+
             img.src = data.cards[0].image
+            // Add Tailwind classes to control size for each card that is drawn
+            img.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
+
+
             let cardVal = data.cards[0].value
 
             hand.push(cardVal)
@@ -120,7 +125,11 @@ function startGame(){
 // }
 
 function newCard(){
-    if(isAlive === true && hasBlackjack === false && sum < 31){
+    if(isAlive === true &&
+       hasBlackjack === false &&
+       sum < 31 &&
+       sum != 0
+       ){
         getRandomCard()
     }
 }
