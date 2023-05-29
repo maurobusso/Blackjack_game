@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-        <title>Blackjack game</title>
-    </head>
-    <body>
-        <!-- <img id="background" src="blackjack-table.png"> -->
-        <div id="container">
-            <h1>Blackjack</h1>
-            <p class="message-el">Do you want to play a round?</p>
-            <p class="cards-el"></p>
-            <p class="sum-el"></p>
-            <button class="btn">START GAME</button>
-            <button class="new-card">NEW CARD</button>
-            <p class="player-el"></p>
-            <script src="app.js"></script>
-        </div>    
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dist/output.css">
+    <title>Blackjack game</title>
+</head>
+<body class="bg-green-700 w-auto h-screen text-center md:m-40 md:bg-[url('images/blackjack-table.png')] md:bg-cover md:bg-center md:h-screen">
+    <div class="border-2 h-screen m-auto bg-green-700 md:pb-52 ">
+        <div>
+            <h1 class="text-5xl text-center font-bold text-red-500 tracking-wider uppercase py-20 sm:text-6xl md:text-7xl lg:text-8xl">Blackjack</h1>
+        </div>
+        <div>
+            <p class="message-el text-2xl italic pb-6">Press <span class="underline">start game</span> to play a round!</p>
+        </div>
+        <div class="hand flex flex-wrap justify-center gap-4 h-36">
+            <!-- Cards go here -->
+        </div>
+        <div class="flex justify-center">
+            <div>
+                <button class="btn bg-yellow-500 text-black border-2 border-black p-4 font-bold rounded-md m-8 text-sm hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2">START GAME</button>
+            </div>
+            <div>
+                <button class="new-card bg-yellow-500 text-black border-2 border-black p-4 font-bold rounded-md m-8 text-sm hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2">NEW CARD</button>
+            </div>
+        </div>
+        <div class="flex-col gap-4">
+            <p class="player-el py-4"></p>
+            <p class="flex justify-center">Total:<p class="sum-el font-bold"></p></p>  
+            <span calss="message-el"></span>  
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
 </html>
-
