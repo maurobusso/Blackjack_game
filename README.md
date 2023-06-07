@@ -1,6 +1,6 @@
 # Blackjack game
 
-This is a one player blackjack game. It was initially built as a part of a module on the "Learn JavaScript" course from the Scrimba. But later been changed and improved with the use of the "Deck of Card" API for displaying the card images.
+This is a one player blackjack game. It was initially built as a part of a module on the "Learn JavaScript" course from the Scrimba. But later has been improved with the use of the "Deck of Card" API for displaying the card images.
 
 <a href="https://blackjack-game-mauro.netlify.app">Play now</a>
 
