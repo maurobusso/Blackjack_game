@@ -111,7 +111,14 @@ function checkForBlackjack() {
     }
 }
 
-
+//constats
 // const MAX_SCORE = 21;
 // const WINNING_SCORE = 21;
 // const CARD_API_URL = 'https://deckofcardsapi.com/api/deck/new/draw/?count=1';
+
+// DOM Elements
+// const messageEl = document.querySelector('.message-el');
+// const sumEl = document.querySelector('.sum-el');
+// const cardsEl = document.querySelector('.cards-el');
+// const playerEl = document.querySelector('.player-el');
+// const newCardBtn = document.querySelector('.new-card');
