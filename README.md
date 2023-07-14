@@ -16,37 +16,21 @@ How It's Made:
 <img align="left" alt="typescript" width="25px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" />
 <br>
 <br>
-It was first started by the core function of the game, which checks what is the sum of the card in the hand of the player and give a response accordingly. This was first tried with hard coded value then the function in charge of randomize the card was implemented. Some refactoring has been done from the original version, such as: </br>
-</br>-Different and more responsive design.
-</br>-Improvement in code redability.
+The project began with the development of the core game function, which calculated the sum of the cards in the player's hand and responded accordingly. Initially, hard-coded values were used, and later, randomization of cards was implemented. The project underwent refactoring to improve the design's responsiveness and enhance code readability.
 
-#
-
-Optimizations: 
-
-The optimization that were added includes, changes in desing and responsiveness with Tailwind.css, use on a deck of card API to show the images of the cards, the app was the migrated to TypeScript to enhance type safety and code mantainability.
+Optimizations were introduced, including the use of Tailwind.css for a responsive design and the integration of a deck of card API to display card images. The project was then migrated to TypeScript, enhancing type safety and code maintainability.
 
 #
 
 Lessons Learned: 
 
-Initially, thanks to this project I was able to improve and put into practice: array manipulation, Boolean, conditionals, objects. The easy way to create randomization with the Math. method. I was also able to integrate a responsive design with CSS.
+This project proved to be a valuable learning experience, allowing me to apply and improve my skills in array manipulation, conditionals, and object-oriented programming. The usage of Math methods facilitated easy card randomization, while CSS enabled the integration of a responsive design.
 
-With this project i was able to improve my proficiency in front-end web development, including DOM manipulation and fetching data from external APIs using the Fetch API. The game features interactive buttons, dynamic card rendering, and updates to player chips based on wins and losses. The project was developed in an organized and modular manner, with TypeScript modules used to handle shared variables and functions efficiently. The code follows best practices for readability and maintainability.
+Through this project, I honed my proficiency in front-end web development, including DOM manipulation and data fetching from external APIs using the Fetch API. The game's interactive buttons, dynamic card rendering, and chip updates based on wins and losses were achieved through an organized and modular development approach, utilizing TypeScript modules to handle shared variables efficiently. The code adheres to best practices for readability and maintainability.
 
-The TypeScript code has explicitly defined types for various variables, allowing for better type checking and code safety.
+TypeScript proved to be a powerful tool, providing static typing and advanced features that improved code safety. The use of union types for variables handling potential null values and explicit object type annotations further enhanced code reliability. Type assertion was employed to ensure proper string conversion when updating DOM elements.
 
-In this TypeScript code, the document.querySelector calls can potentially return null if no matching elements are found in the DOM. To handle the possibility of a null value, the variables that store the results of these calls are declared with union types, which include Element and null.
-
-Here's a summary of the TypeScript features used in this code:
-
-Union Types: For variables like button, messageEl, sumEl, cardsEl, newCardBtn, playerEl, div, and totalDiv, the types are declared as Element | null, indicating that they can hold either an Element or null.
-
-Object Type Annotation: The player variable is explicitly declared as an object with properties name (string) and chips (number).
-
-Type Assertion: The totalEl.innerText is set using total.toString(), which is a type assertion (type-casting) to ensure that the innerText property is set with a string value.
-
-TypeScript provides static typing and additional features that enhance code safety and maintainability, making it a powerful tool for developing large-scale JavaScript applications.
+Overall, this project showcases the successful integration of TypeScript into front-end development, resulting in a robust and enjoyable browser-based Blackjack game.
 
  
 
