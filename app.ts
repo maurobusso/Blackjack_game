@@ -9,8 +9,6 @@ let sumEl: HTMLElement | null = document.querySelector('.sum-el')
 let cardsEl: Element | null = document.querySelector('.cards-el')
 let newCardBtn: Element | null = document.querySelector('.new-card')
 let playerEl: Element | null = document.querySelector('.player-el')
-const imgCardOne = document.querySelector('.card-one')
-const imgCardTwo = document.querySelector('.card-two')
 const div: Element | null = document.querySelector('.hand')
 const totalDiv: Element | null = document.querySelector('.sum-el')
 
@@ -28,7 +26,7 @@ if(button){
     button.addEventListener('click', startGame)
 }
 if(newCardBtn){
-    newCardBtn.addEventListener('click',newCard)
+    newCardBtn.addEventListener('click', newCard)
 }
 
 function getRandomCard() {
@@ -61,14 +59,21 @@ function getRandomCard() {
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error)
+            if(messageEl){
+                messageEl.innerText = 'Error fetching card. Please try again later.'
+            }
         })
 }
 
 //The method Math.random give a value between o and 0.999999999 by moltyply * 13 and adding 13 and using Math.floor it gives us a number between 0 and 13. that would work for any range of numbers.
 
 function startGame(){
+
     hand = []
     sum = 0  
+    hasBlackjack = false
+    isAlive = true
+
     if(messageEl){
         messageEl.textContent = ''
     }
@@ -77,6 +82,10 @@ function startGame(){
         while (div.firstChild) {
             div.firstChild.remove();
         }
+    }
+
+    if(sumEl){
+        sumEl.innerText = '0'
     }
 
     getRandomCard()
