@@ -43,11 +43,6 @@ type DeckData = {
     remaining: number
 }
 
-// const hand = {
-//     player: [],
-//     dealer: [],
-// };
-
 if(playerEl){
     playerEl.textContent = player.name +': '+ player.chips
 }
@@ -183,14 +178,13 @@ function getRandomCardForPlayer(cards: any) {
 }
 
 function createCardImage(imageSrc: string) {
-    //const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
     const cardImage = document.createElement('img');
     cardImage.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
     cardImage.src = imageSrc;
     return cardImage;
 }
 
-function drawOneCard(){
+async function drawOneCard(){
     let img = document.createElement('img')
     fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=1')
         .then(response => {

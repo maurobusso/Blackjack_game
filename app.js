@@ -31,10 +31,6 @@ let player = {
     name: '',
     chips: 10
 };
-// const hand = {
-//     player: [],
-//     dealer: [],
-// };
 if (playerEl) {
     playerEl.textContent = player.name + ': ' + player.chips;
 }
@@ -149,40 +145,41 @@ function getRandomCardForPlayer(cards) {
     }
 }
 function createCardImage(imageSrc) {
-    //const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
     const cardImage = document.createElement('img');
     cardImage.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
     cardImage.src = imageSrc;
     return cardImage;
 }
 function drawOneCard() {
-    let img = document.createElement('img');
-    fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=1')
-        .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-        .then(data => {
-        console.log(data);
-        if (myHand) {
-            let cards = data;
-            myHand.appendChild(img);
-            img.src = data.cards[0].image;
-            // Add Tailwind classes to control size for each card that is drawn
-            img.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
-            let cardVal = data.cards[0].value;
-            hand.push(cardVal);
-            calculateTotal();
-            checkForBlackjack();
-        }
-    })
-        .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-        if (messageEl) {
-            messageEl.innerText = 'Error fetching card. Please try again later.';
-        }
+    return __awaiter(this, void 0, void 0, function* () {
+        let img = document.createElement('img');
+        fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=1')
+            .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+            .then(data => {
+            console.log(data);
+            if (myHand) {
+                let cards = data;
+                myHand.appendChild(img);
+                img.src = data.cards[0].image;
+                // Add Tailwind classes to control size for each card that is drawn
+                img.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
+                let cardVal = data.cards[0].value;
+                hand.push(cardVal);
+                calculateTotal();
+                checkForBlackjack();
+            }
+        })
+            .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            if (messageEl) {
+                messageEl.innerText = 'Error fetching card. Please try again later.';
+            }
+        });
     });
 }
 function newCard() {
