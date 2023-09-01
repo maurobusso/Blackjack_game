@@ -142,3 +142,25 @@ const player = {
       }
     });
   }
+
+  // Function to fetch a random card
+function getRandomCard() {
+    fetch(CARD_API_URL)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const card = data.cards[0];
+        hand.push(card.value);
+        displayCard(card);
+        calculateTotal();
+        checkForBlackjack();
+      })
+      .catch((error) => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  }
+  
