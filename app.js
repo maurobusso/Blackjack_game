@@ -124,50 +124,67 @@ function checkForBlackjack() {
 // const newCardBtn = document.querySelector('.new-card');
 
 // Player object for future features
-const player = {
-    name: 'you',
-    chips: 100,
-  };
+// const player = {
+//     name: 'you',
+//     chips: 100,
+//   };
   
   // Initialize the player display
-  if (playerEl) {
-    playerEl.textContent = `${player.name}: ${player.chips}`;
-  }
+//   if (playerEl) {
+//     playerEl.textContent = `${player.name}: ${player.chips}`;
+//   }
   
   // Event listeners
-  if (newCardBtn) {
-    newCardBtn.addEventListener('click', () => {
-      if (sum < MAX_SCORE) {
-        getRandomCard();
-      }
-    });
-  }
+//   if (newCardBtn) {
+//     newCardBtn.addEventListener('click', () => {
+//       if (sum < MAX_SCORE) {
+//         getRandomCard();
+//       }
+//     });
+//   }
 
   // Function to fetch a random card
-function getRandomCard() {
-    fetch(CARD_API_URL)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const card = data.cards[0];
-        hand.push(card.value);
-        displayCard(card);
-        calculateTotal();
-        checkForBlackjack();
-      })
-      .catch((error) => {
-        console.error('There was a problem with the fetch operation:', error);
-      });
-  }
+// function getRandomCard() {
+//     fetch(CARD_API_URL)
+//       .then((response) => {
+//         if (!response.ok) {
+//           throw new Error('Network response was not ok');
+//         }
+//         return response.json();
+//       })
+//       .then((data) => {
+//         const card = data.cards[0];
+//         hand.push(card.value);
+//         displayCard(card);
+//         calculateTotal();
+//         checkForBlackjack();
+//       })
+//       .catch((error) => {
+//         console.error('There was a problem with the fetch operation:', error);
+//       });
+//   }
   
   // Function to display a card
-function displayCard(card) {
-    const img = document.createElement('img');
-    img.src = card.image;
-    img.classList.add('card-image');
-    cardsEl.appendChild(img);
-  }
+// function displayCard(card) {
+//     const img = document.createElement('img');
+//     img.src = card.image;
+//     img.classList.add('card-image');
+//     cardsEl.appendChild(img);
+//   }
+
+  // Function to calculate the total sum of card values
+// function calculateTotal() {
+//     sum = hand.reduce((total, card) => {
+//       if (card === 'ACE') {
+//         return total + 11 <= MAX_SCORE ? total + 11 : total + 1;
+//       } else if (['JACK', 'QUEEN', 'KING'].includes(card)) {
+//         return total + 10;
+//       } else {
+//         return total + parseInt(card);
+//       }
+//     }, 0);
+  
+//     if (sumEl) {
+//       sumEl.innerText = sum.toString();
+//     }
+//   }
