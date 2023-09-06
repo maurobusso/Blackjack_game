@@ -110,3 +110,8 @@ function checkForBlackjack() {
         player.chips -= 10;
     }
 }
+
+
+// const MAX_SCORE = 21;
+// const WINNING_SCORE = 21;
+// const CARD_API_URL = 'https://deckofcardsapi.com/api/deck/new/draw/?count=1';
