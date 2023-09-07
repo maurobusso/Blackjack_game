@@ -9,9 +9,9 @@ let sumEl: HTMLElement | null = document.querySelector('.sum-el')
 let cardsEl: Element | null = document.querySelector('.cards-el')
 let newCardBtn: Element | null = document.querySelector('.new-card')
 let playerEl: Element | null = document.querySelector('.player-el')
-let div: Element | null = document.querySelector('.hand')
+let myHand: Element | null = document.querySelector('.hand')
 let totalDiv: Element | null = document.querySelector('.sum-el')
-let dealerCards: Element | null = document.querySelector('.dealerHand')
+let dealerHand: Element | null = document.querySelector('.dealerHand')
 
 //Player object for future feature
 let player: {name:string, chips: number} = {
@@ -41,9 +41,9 @@ function getRandomCard() {
         })
         .then(data => {
             console.log(data)
-            if(div){
+            if(myHand){
 
-                div.appendChild(img)
+                myHand.appendChild(img)
     
                 img.src = data.cards[0].image
                 // Add Tailwind classes to control size for each card that is drawn
@@ -79,9 +79,15 @@ function startGame(){
         messageEl.textContent = ''
     }
     
-    if(div){
-        while (div.firstChild) {
-            div.firstChild.remove();
+    if(myHand){
+        while (myHand.firstChild) {
+            myHand.firstChild.remove();
+        }
+    }
+
+    if(dealerHand){
+        while (dealerHand.firstChild) {
+            dealerHand.firstChild.remove();
         }
     }
 

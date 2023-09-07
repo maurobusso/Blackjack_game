@@ -11,6 +11,7 @@ var newCardBtn = document.querySelector('.new-card');
 var playerEl = document.querySelector('.player-el');
 var div = document.querySelector('.hand');
 var totalDiv = document.querySelector('.sum-el');
+var dealerCards = document.querySelector('.dealerHand');
 //Player object for future feature
 var player = {
     name: "you",
