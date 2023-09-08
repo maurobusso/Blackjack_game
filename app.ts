@@ -109,6 +109,8 @@ function getRandomCardForPlayer(cards){
 
 function startGame(){
 
+    makeHeadersVisible()
+
     hand = []
     sum = 0  
     hasBlackjack = false
@@ -217,5 +219,18 @@ function checkForBlackjack() {
         messageEl.innerText = 'SORRY YOU ARE OUT!'
         isAlive = false
         player.chips -= 10
+    }
+}
+
+function makeHeadersVisible() {
+    const yourCardsHeader = document.querySelector('.yourCards');
+    const dealerCardsHeader = document.querySelector('.dealerCards');
+
+    if (yourCardsHeader) {
+        yourCardsHeader.classList.remove('hidden');
+    }
+
+    if (dealerCardsHeader) {
+        dealerCardsHeader.classList.remove('hidden');
     }
 }

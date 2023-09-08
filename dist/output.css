@@ -603,6 +603,10 @@ video {
   padding-bottom: 1.5rem;
 }
 
+.pt-8 {
+  padding-top: 2rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -624,6 +628,10 @@ video {
 
 .font-bold {
   font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
 }
 
 .uppercase {
@@ -689,12 +697,20 @@ video {
     margin: 10rem;
   }
 
+  .md\:flex {
+    display: flex;
+  }
+
   .md\:h-48 {
     height: 12rem;
   }
 
   .md\:w-36 {
     width: 9rem;
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
   }
 
   .md\:bg-\[url\(\'images\/blackjack-table\.png\'\)\] {
@@ -720,9 +736,19 @@ video {
 }
 
 @media (min-width: 1024px) {
+  .lg\:flex-row {
+    flex-direction: row;
+  }
+
   .lg\:text-8xl {
     font-size: 6rem;
     line-height: 1;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:flex-row {
+    flex-direction: row;
   }
 }
 
