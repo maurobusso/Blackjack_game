@@ -123,8 +123,9 @@ function getRandomCardForDealer(cards) {
 function getRandomCardForPlayer(cards) {
     if (myHand) {
         for (let i = 0; i < 2; i++) {
-            const cardImage = createCardImage(cards[i].image);
-            myHand.appendChild(cardImage);
+            hand.push(cards[i].code)
+            const cardImage = createCardImage(cards[i].image)
+            myHand.appendChild(cardImage)
         }
 
         calculateTotal();

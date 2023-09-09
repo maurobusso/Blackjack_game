@@ -102,6 +102,7 @@ function getRandomCardForDealer(cards) {
 function getRandomCardForPlayer(cards) {
     if (myHand) {
         for (var i = 0; i < 2; i++) {
+            hand.push(cards[i].code);
             var cardImage = createCardImage(cards[i].image);
             myHand.appendChild(cardImage);
         }
