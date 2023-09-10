@@ -122,3 +122,23 @@ function checkForBlackjack() {
 // const cardsEl = document.querySelector('.cards-el');
 // const playerEl = document.querySelector('.player-el');
 // const newCardBtn = document.querySelector('.new-card');
+
+// Player object for future features
+const player = {
+    name: 'you',
+    chips: 100,
+  };
+  
+  // Initialize the player display
+  if (playerEl) {
+    playerEl.textContent = `${player.name}: ${player.chips}`;
+  }
+  
+  // Event listeners
+  if (newCardBtn) {
+    newCardBtn.addEventListener('click', () => {
+      if (sum < MAX_SCORE) {
+        getRandomCard();
+      }
+    });
+  }
