@@ -164,3 +164,10 @@ function getRandomCard() {
       });
   }
   
+  // Function to display a card
+function displayCard(card) {
+    const img = document.createElement('img');
+    img.src = card.image;
+    img.classList.add('card-image');
+    cardsEl.appendChild(img);
+  }
