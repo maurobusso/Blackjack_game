@@ -188,3 +188,29 @@ function checkForBlackjack() {
 //       sumEl.innerText = sum.toString();
 //     }
 //   }
+
+// Function to check for blackjack
+// function checkForBlackjack() {
+//     if (sum === WINNING_SCORE) {
+//       messageEl.innerText = 'BLACKJACK! You win!';
+//       player.chips++;
+//     } else if (sum > WINNING_SCORE) {
+//       messageEl.innerText = 'SORRY YOU ARE OUT!';
+//       player.chips -= 10;
+//     }
+//   }
+  
+//   // Function to start a new game
+//   function startGame() {
+//     hand = [];
+//     sum = 0;
+//     messageEl.textContent = '';
+//     while (cardsEl.firstChild) {
+//       cardsEl.firstChild.remove();
+//     }
+//     getRandomCard();
+//     getRandomCard();
+//   }
+  
+//   // Initialize the game by calling startGame
+//   startGame();
