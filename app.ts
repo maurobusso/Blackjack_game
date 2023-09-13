@@ -12,7 +12,7 @@ let playerEl: Element | null = document.querySelector('.player-el')
 let myHand: Element | null = document.querySelector('.hand')
 let totalDiv: Element | null = document.querySelector('.sum-el')
 let dealerHand: Element | null = document.querySelector('.dealerHand')
-const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
+const cardBack: string = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
 
 //Player object for future feature
 let player: {name:string, chips: number} = {
