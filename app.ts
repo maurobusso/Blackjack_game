@@ -30,9 +30,9 @@ if(newCardBtn){
     newCardBtn.addEventListener('click', newCard)
 }
 
-function getRandomCard() {
+function initialDraw() {
     let img = document.createElement('img')
-    fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=1')
+    fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=4')
         .then(response => {
             if (!response.ok) {
             throw new Error('Network response was not ok')
@@ -43,19 +43,27 @@ function getRandomCard() {
             console.log(data)
             if(myHand){
 
-                myHand.appendChild(img)
+                let cards = data.cards
+                console.log(cards)
+
+                // myHand.appendChild(img)
+                // dealerHand.appendChild(img)
     
-                img.src = data.cards[0].image
-                // Add Tailwind classes to control size for each card that is drawn
-                img.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
+                // img.src = data.cards[0].image
+                // img.src = data.cards[1].image
+                // // Add Tailwind classes to control size for each card that is drawn
+                // img.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
     
     
-                let cardVal = data.cards[0].value
+                // let cardVal = data.cards[0].value
     
-                hand.push(cardVal)
+                // hand.push(cardVal)
     
-                calculateTotal()
-                checkForBlackjack()
+                // calculateTotal()
+                // checkForBlackjack()
+                getRandomCardForDealer(cards)
+                getRandomCardForPlayer(cards)
+                
             }
         })
         .catch(error => {
@@ -64,6 +72,37 @@ function getRandomCard() {
                 messageEl.innerText = 'Error fetching card. Please try again later.'
             }
         })
+}
+
+function getRandomCardForDealer(cards){
+    if(dealerHand){
+        let firstCard = document.createElement('img')
+        let secondCard = document.createElement('img')
+        dealerHand.appendChild(firstCard)
+        dealerHand.appendChild(secondCard)
+        firstCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
+        secondCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
+        firstCard.src = cards[2].image
+        secondCard.src = cards[3].image
+    }
+
+}
+
+function getRandomCardForPlayer(cards){
+    if(myHand){
+        
+        let firstCard = document.createElement('img')
+        let secondCard = document.createElement('img')
+        myHand.appendChild(firstCard)
+        myHand.appendChild(secondCard)
+        firstCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
+        secondCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
+        firstCard.src = cards[0].image
+        secondCard.src = cards[1].image
+
+        calculateTotal()
+        checkForBlackjack()
+    }
 }
 
 //The method Math.random give a value between o and 0.999999999 by moltyply * 13 and adding 13 and using Math.floor it gives us a number between 0 and 13. that would work for any range of numbers.
@@ -95,16 +134,57 @@ function startGame(){
         sumEl.innerText = '0'
     }
 
-    getRandomCard()
-    getRandomCard()
+    initialDraw()
+    
 }
+
+function drawOneCard(){
+    let img = document.createElement('img')
+    fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=1')
+        .then(response => {
+            if (!response.ok) {
+            throw new Error('Network response was not ok')
+            }
+            return response.json()
+        })
+        .then(data => {
+            console.log(data)
+            if(myHand){
+
+                let cards = data
+
+                myHand.appendChild(img)
+                
+    
+                img.src = data.cards[0].image
+    
+                // Add Tailwind classes to control size for each card that is drawn
+                img.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
+    
+    
+                let cardVal = data.cards[0].value
+    
+                hand.push(cardVal)
+    
+                calculateTotal()
+                checkForBlackjack()
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error)
+            if(messageEl){
+                messageEl.innerText = 'Error fetching card. Please try again later.'
+            }
+        })
+}
+
 
 function newCard(){
     if(isAlive === true &&
        hasBlackjack === false &&
        sum < 21 
        ){
-        getRandomCard()
+        drawOneCard()
     }
 }
 

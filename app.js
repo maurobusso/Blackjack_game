@@ -9,9 +9,9 @@ var sumEl = document.querySelector('.sum-el');
 var cardsEl = document.querySelector('.cards-el');
 var newCardBtn = document.querySelector('.new-card');
 var playerEl = document.querySelector('.player-el');
-var div = document.querySelector('.hand');
+var myHand = document.querySelector('.hand');
 var totalDiv = document.querySelector('.sum-el');
-var dealerCards = document.querySelector('.dealerHand');
+var dealerHand = document.querySelector('.dealerHand');
 //Player object for future feature
 var player = {
     name: "you",
@@ -26,7 +26,92 @@ if (button) {
 if (newCardBtn) {
     newCardBtn.addEventListener('click', newCard);
 }
-function getRandomCard() {
+function initialDraw() {
+    var img = document.createElement('img');
+    fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=4')
+        .then(function (response) {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+        .then(function (data) {
+        console.log(data);
+        if (myHand) {
+            var cards = data.cards;
+            console.log(cards);
+            // myHand.appendChild(img)
+            // dealerHand.appendChild(img)
+            // img.src = data.cards[0].image
+            // img.src = data.cards[1].image
+            // // Add Tailwind classes to control size for each card that is drawn
+            // img.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
+            // let cardVal = data.cards[0].value
+            // hand.push(cardVal)
+            // calculateTotal()
+            // checkForBlackjack()
+            getRandomCardForDealer(cards);
+            getRandomCardForPlayer(cards);
+        }
+    })
+        .catch(function (error) {
+        console.error('There was a problem with the fetch operation:', error);
+        if (messageEl) {
+            messageEl.innerText = 'Error fetching card. Please try again later.';
+        }
+    });
+}
+function getRandomCardForDealer(cards) {
+    if (dealerHand) {
+        var firstCard = document.createElement('img');
+        var secondCard = document.createElement('img');
+        dealerHand.appendChild(firstCard);
+        dealerHand.appendChild(secondCard);
+        firstCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
+        secondCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
+        firstCard.src = cards[2].image;
+        secondCard.src = cards[3].image;
+    }
+}
+function getRandomCardForPlayer(cards) {
+    if (myHand) {
+        var firstCard = document.createElement('img');
+        var secondCard = document.createElement('img');
+        myHand.appendChild(firstCard);
+        myHand.appendChild(secondCard);
+        firstCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
+        secondCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
+        firstCard.src = cards[0].image;
+        secondCard.src = cards[1].image;
+        calculateTotal();
+        checkForBlackjack();
+    }
+}
+//The method Math.random give a value between o and 0.999999999 by moltyply * 13 and adding 13 and using Math.floor it gives us a number between 0 and 13. that would work for any range of numbers.
+function startGame() {
+    hand = [];
+    sum = 0;
+    hasBlackjack = false;
+    isAlive = true;
+    if (messageEl) {
+        messageEl.textContent = '';
+    }
+    if (myHand) {
+        while (myHand.firstChild) {
+            myHand.firstChild.remove();
+        }
+    }
+    if (dealerHand) {
+        while (dealerHand.firstChild) {
+            dealerHand.firstChild.remove();
+        }
+    }
+    if (sumEl) {
+        sumEl.innerText = '0';
+    }
+    initialDraw();
+}
+function drawOneCard() {
     var img = document.createElement('img');
     fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=1')
         .then(function (response) {
@@ -37,8 +122,9 @@ function getRandomCard() {
     })
         .then(function (data) {
         console.log(data);
-        if (div) {
-            div.appendChild(img);
+        if (myHand) {
+            var cards = data;
+            myHand.appendChild(img);
             img.src = data.cards[0].image;
             // Add Tailwind classes to control size for each card that is drawn
             img.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
@@ -55,31 +141,11 @@ function getRandomCard() {
         }
     });
 }
-//The method Math.random give a value between o and 0.999999999 by moltyply * 13 and adding 13 and using Math.floor it gives us a number between 0 and 13. that would work for any range of numbers.
-function startGame() {
-    hand = [];
-    sum = 0;
-    hasBlackjack = false;
-    isAlive = true;
-    if (messageEl) {
-        messageEl.textContent = '';
-    }
-    if (div) {
-        while (div.firstChild) {
-            div.firstChild.remove();
-        }
-    }
-    if (sumEl) {
-        sumEl.innerText = '0';
-    }
-    getRandomCard();
-    getRandomCard();
-}
 function newCard() {
     if (isAlive === true &&
         hasBlackjack === false &&
         sum < 21) {
-        getRandomCard();
+        drawOneCard();
     }
 }
 function calculateTotal() {
