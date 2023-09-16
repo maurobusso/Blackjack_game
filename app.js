@@ -1,20 +1,20 @@
-var hand = [];
-var hasBlackjack = false;
-var isAlive = true;
-var sum = 0;
-var message = "";
-var button = document.querySelector('.btn');
-var messageEl = document.querySelector('.message-el');
-var sumEl = document.querySelector('.sum-el');
-var cardsEl = document.querySelector('.cards-el');
-var newCardBtn = document.querySelector('.new-card');
-var playerEl = document.querySelector('.player-el');
-var imgCardOne = document.querySelector('.card-one');
-var imgCardTwo = document.querySelector('.card-two');
-var div = document.querySelector('.hand');
-var totalDiv = document.querySelector('.sum-el');
+const hand = [];
+const hasBlackjack = false;
+const isAlive = true;
+const sum = 0;
+const message = "";
+const button = document.querySelector('.btn');
+const messageEl = document.querySelector('.message-el');
+const sumEl = document.querySelector('.sum-el');
+const cardsEl = document.querySelector('.cards-el');
+const newCardBtn = document.querySelector('.new-card');
+const playerEl = document.querySelector('.player-el');
+const imgCardOne = document.querySelector('.card-one');
+const imgCardTwo = document.querySelector('.card-two');
+const div = document.querySelector('.hand');
+const totalDiv = document.querySelector('.sum-el');
 //Player object for future feature
-var player = {
+const player = {
     name: "you",
     chips: 100
 };
