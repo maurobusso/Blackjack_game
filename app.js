@@ -61,33 +61,60 @@ function initialDraw() {
         }
     });
 }
+// function getRandomCardForDealer(cards){
+//     if(dealerHand){
+//         let firstCard = document.createElement('img')
+//         let secondCard = document.createElement('img')
+//         dealerHand.appendChild(firstCard)
+//         dealerHand.appendChild(secondCard)
+//         firstCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
+//         secondCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
+//         firstCard.src = cards[2].image
+//         secondCard.src = cards[3].image
+//     }
+// }
+// function getRandomCardForPlayer(cards){
+//     if(myHand){
+//         let firstCard = document.createElement('img')
+//         let secondCard = document.createElement('img')
+//         myHand.appendChild(firstCard)
+//         myHand.appendChild(secondCard)
+//         firstCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
+//         secondCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
+//         firstCard.src = cards[0].image
+//         secondCard.src = cards[1].image
+//         calculateTotal()
+//         checkForBlackjack()
+//     }
+// }
 function getRandomCardForDealer(cards) {
     if (dealerHand) {
-        var firstCard = document.createElement('img');
-        var secondCard = document.createElement('img');
-        dealerHand.appendChild(firstCard);
-        dealerHand.appendChild(secondCard);
-        firstCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
-        secondCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
-        firstCard.src = cards[2].image;
-        secondCard.src = cards[3].image;
-    }
-}
-function getRandomCardForPlayer(cards) {
-    if (myHand) {
-        var firstCard = document.createElement('img');
-        var secondCard = document.createElement('img');
-        myHand.appendChild(firstCard);
-        myHand.appendChild(secondCard);
-        firstCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
-        secondCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
-        firstCard.src = cards[0].image;
-        secondCard.src = cards[1].image;
+        for (var i = 0; i < 2; i++) {
+            var cardImage = createCardImage(cards[i].image);
+            dealerHand.appendChild(cardImage);
+        }
         calculateTotal();
         checkForBlackjack();
     }
 }
-//The method Math.random give a value between o and 0.999999999 by moltyply * 13 and adding 13 and using Math.floor it gives us a number between 0 and 13. that would work for any range of numbers.
+function getRandomCardForPlayer(cards) {
+    if (myHand) {
+        for (var i = 0; i < 2; i++) {
+            var cardImage = createCardImage(cards[i].image);
+            myHand.appendChild(cardImage);
+        }
+        calculateTotal();
+        checkForBlackjack();
+    }
+}
+function createCardImage(imageSrc) {
+    var cardImage = document.createElement('img');
+    cardImage.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
+    cardImage.src = imageSrc;
+    return cardImage;
+}
+//The method Math.random give a value between o and 0.999999999 by moltyply * 13 and adding 13 and using Math.floor 
+//it gives us a number between 0 and 13. that would work for any range of numbers.
 function startGame() {
     makeHeadersVisible();
     hand = [];
