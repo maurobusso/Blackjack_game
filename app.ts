@@ -88,6 +88,9 @@ function getRandomCardForDealer(cards) {
         for (let i = 2; i <= 3; i++) {
             const cardImage = createCardImage(cards[i].image);
             dealerHand.appendChild(cardImage);
+            if(hand.length === 0){
+                cardImage.src = cardBack
+            }
         }
 
         calculateTotal();
