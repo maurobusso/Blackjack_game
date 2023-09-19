@@ -12,6 +12,7 @@ var playerEl = document.querySelector('.player-el');
 var myHand = document.querySelector('.hand');
 var totalDiv = document.querySelector('.sum-el');
 var dealerHand = document.querySelector('.dealerHand');
+var cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg';
 //Player object for future feature
 var player = {
     name: "you",
@@ -87,9 +88,10 @@ function initialDraw() {
 //         checkForBlackjack()
 //     }
 // }
+//this refactorer version of above code more concise and mantainable
 function getRandomCardForDealer(cards) {
     if (dealerHand) {
-        for (var i = 0; i < 2; i++) {
+        for (var i = 2; i <= 3; i++) {
             var cardImage = createCardImage(cards[i].image);
             dealerHand.appendChild(cardImage);
         }
