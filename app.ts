@@ -20,6 +20,11 @@ let player: {name:string, chips: number} = {
     chips: 100
 }
 
+// const hand = {
+//     player: [],
+//     dealer: [],
+// };
+
 if(playerEl){
     playerEl.textContent = player.name +': '+ player.chips
 }
@@ -75,40 +80,10 @@ function initialDraw() {
         })
 }
 
-// function getRandomCardForDealer(cards){
-//     if(dealerHand){
-//         let firstCard = document.createElement('img')
-//         let secondCard = document.createElement('img')
-//         dealerHand.appendChild(firstCard)
-//         dealerHand.appendChild(secondCard)
-//         firstCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
-//         secondCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
-//         firstCard.src = cards[2].image
-//         secondCard.src = cards[3].image
-//     }
-
-// }
-
-// function getRandomCardForPlayer(cards){
-//     if(myHand){
-        
-//         let firstCard = document.createElement('img')
-//         let secondCard = document.createElement('img')
-//         myHand.appendChild(firstCard)
-//         myHand.appendChild(secondCard)
-//         firstCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
-//         secondCard.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
-//         firstCard.src = cards[0].image
-//         secondCard.src = cards[1].image
-
-//         calculateTotal()
-//         checkForBlackjack()
-//     }
-// }
-
 //this refactorer version of above code more concise and mantainable
 
 function getRandomCardForDealer(cards) {
+    const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
     if (dealerHand) {
         for (let i = 2; i <= 3; i++) {
             const cardImage = createCardImage(cards[i].image);
@@ -134,6 +109,7 @@ function getRandomCardForPlayer(cards) {
 }
 
 function createCardImage(imageSrc) {
+    //const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
     const cardImage = document.createElement('img');
     cardImage.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
     cardImage.src = imageSrc;

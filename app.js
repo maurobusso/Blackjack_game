@@ -18,6 +18,10 @@ var player = {
     name: "you",
     chips: 100
 };
+// const hand = {
+//     player: [],
+//     dealer: [],
+// };
 if (playerEl) {
     playerEl.textContent = player.name + ': ' + player.chips;
 }
@@ -90,6 +94,7 @@ function initialDraw() {
 // }
 //this refactorer version of above code more concise and mantainable
 function getRandomCardForDealer(cards) {
+    var cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg';
     if (dealerHand) {
         for (var i = 2; i <= 3; i++) {
             var cardImage = createCardImage(cards[i].image);
@@ -111,9 +116,10 @@ function getRandomCardForPlayer(cards) {
     }
 }
 function createCardImage(imageSrc) {
+    var cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg';
     var cardImage = document.createElement('img');
     cardImage.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
-    cardImage.src = imageSrc;
+    cardImage.src = cardBack;
     return cardImage;
 }
 //The method Math.random give a value between o and 0.999999999 by moltyply * 13 and adding 13 and using Math.floor 
