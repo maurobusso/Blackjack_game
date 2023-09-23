@@ -9,8 +9,9 @@ let sumEl: HTMLElement | null = document.querySelector('.sum-el')
 let cardsEl: Element | null = document.querySelector('.cards-el')
 let newCardBtn: Element | null = document.querySelector('.new-card')
 let playerEl: Element | null = document.querySelector('.player-el')
-const div: Element | null = document.querySelector('.hand')
-const totalDiv: Element | null = document.querySelector('.sum-el')
+let div: Element | null = document.querySelector('.hand')
+let totalDiv: Element | null = document.querySelector('.sum-el')
+let dealerCards: Element | null = document.querySelector('.dealerHand')
 
 //Player object for future feature
 let player: {name:string, chips: number} = {
