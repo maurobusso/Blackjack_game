@@ -240,6 +240,7 @@ function checkForBlackjack() {
 function makeHeadersVisible() {
     const yourCardsHeader = document.querySelector('.yourCards');
     const dealerCardsHeader = document.querySelector('.dealerCards');
+    const gameButtons = document.querySelector('.gameButtons');
 
     if (yourCardsHeader) {
         yourCardsHeader.classList.remove('hidden');
@@ -247,5 +248,9 @@ function makeHeadersVisible() {
 
     if (dealerCardsHeader) {
         dealerCardsHeader.classList.remove('hidden');
+    }
+
+    if (gameButtons) {
+        gameButtons.classList.remove('hidden');
     }
 }

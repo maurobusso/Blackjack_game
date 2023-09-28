@@ -520,16 +520,6 @@ video {
   margin: 2rem;
 }
 
-.my-12 {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
-.my-8 {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
 .flex {
   display: flex;
 }
@@ -587,6 +577,11 @@ video {
 
 .p-4 {
   padding: 1rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .py-20 {
@@ -697,20 +692,12 @@ video {
     margin: 10rem;
   }
 
-  .md\:flex {
-    display: flex;
-  }
-
   .md\:h-48 {
     height: 12rem;
   }
 
   .md\:w-36 {
     width: 9rem;
-  }
-
-  .md\:flex-row {
-    flex-direction: row;
   }
 
   .md\:bg-\[url\(\'images\/blackjack-table\.png\'\)\] {
@@ -736,19 +723,9 @@ video {
 }
 
 @media (min-width: 1024px) {
-  .lg\:flex-row {
-    flex-direction: row;
-  }
-
   .lg\:text-8xl {
     font-size: 6rem;
     line-height: 1;
-  }
-}
-
-@media (min-width: 1280px) {
-  .xl\:flex-row {
-    flex-direction: row;
   }
 }
 

@@ -199,10 +199,14 @@ function checkForBlackjack() {
 function makeHeadersVisible() {
     var yourCardsHeader = document.querySelector('.yourCards');
     var dealerCardsHeader = document.querySelector('.dealerCards');
+    var gameButtons = document.querySelector('.gameButtons');
     if (yourCardsHeader) {
         yourCardsHeader.classList.remove('hidden');
     }
     if (dealerCardsHeader) {
         dealerCardsHeader.classList.remove('hidden');
+    }
+    if (gameButtons) {
+        gameButtons.classList.remove('hidden');
     }
 }
