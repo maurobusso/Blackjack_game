@@ -1,4 +1,5 @@
 let hand: string[] = []
+let computerHand: string[] = []
 let hasBlackjack: boolean = false
 let isAlive: boolean = true 
 let sum: number = 0
@@ -92,8 +93,9 @@ function getRandomCardForDealer(cards) {
     const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
     if (dealerHand) {
         for (let i = 2; i <= 3; i++) {
-            const cardImage = createCardImage(cards[i].image);
-            dealerHand.appendChild(cardImage);
+            const cardImage = createCardImage(cards[i].image)
+            dealerHand.appendChild(cardImage)
+            //dealerhand += card
             if(hand.length === 0){
                 cardImage.src = cardBack
             }
@@ -220,7 +222,8 @@ function calculateTotal() {
             }else{
                 total += 1
             }
-        }else if(hand[i] === 'JACK' || hand[i] === 'QUEEN' || hand[i] === 'KING' ){
+        }
+        if(hand[i] === 'JACK' || hand[i] === 'QUEEN' || hand[i] === 'KING' ){
             total += 10
         }else{
             total += parseInt(hand[i])
