@@ -59,24 +59,8 @@ function initialDraw() {
                 let cards = data.cards
                 console.log(cards)
 
-                // myHand.appendChild(img)
-                // dealerHand.appendChild(img)
-    
-                // img.src = data.cards[0].image
-                // img.src = data.cards[1].image
-                // // Add Tailwind classes to control size for each card that is drawn
-                // img.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
-    
-    
-                // let cardVal = data.cards[0].value
-    
-                // hand.push(cardVal)
-    
-                // calculateTotal()
-                // checkForBlackjack()
                 getRandomCardForDealer(cards)
                 getRandomCardForPlayer(cards)
-                
             }
         })
         .catch(error => {
