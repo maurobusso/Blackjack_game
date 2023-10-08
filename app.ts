@@ -8,6 +8,7 @@ let messageEl: HTMLElement  | null = document.querySelector('.message-el')
 let sumEl: HTMLElement | null = document.querySelector('.sum-el')
 let cardsEl: Element | null = document.querySelector('.cards-el')
 let newCardBtn: Element | null = document.querySelector('.new-card')
+let stayBtn: Element | null = document.querySelector('.stay-btn')
 let playerEl: Element | null = document.querySelector('.player-el')
 let myHand: Element | null = document.querySelector('.hand')
 let totalDiv: Element | null = document.querySelector('.sum-el')
@@ -32,8 +33,13 @@ if(playerEl){
 if(button){
     button.addEventListener('click', startGame)
 }
+
 if(newCardBtn){
     newCardBtn.addEventListener('click', newCard)
+}
+
+if(stayBtn){
+    stayBtn.addEventListener('click', showDealerCards)
 }
 
 function initialDraw() {
@@ -238,19 +244,37 @@ function checkForBlackjack() {
 }
 
 function makeHeadersVisible() {
-    const yourCardsHeader = document.querySelector('.yourCards');
-    const dealerCardsHeader = document.querySelector('.dealerCards');
-    const gameButtons = document.querySelector('.gameButtons');
+    const yourCardsHeader = document.querySelector('.yourCards')
+    const dealerCardsHeader = document.querySelector('.dealerCards')
+    const gameButtons = document.querySelector('.gameButtons')
+
+    const stayBtn = document.querySelector('.stay-btn')
+    const newCardBtn = document.querySelector('.new-card')
 
     if (yourCardsHeader) {
-        yourCardsHeader.classList.remove('hidden');
+        yourCardsHeader.classList.remove('hidden')
     }
 
     if (dealerCardsHeader) {
-        dealerCardsHeader.classList.remove('hidden');
+        dealerCardsHeader.classList.remove('hidden')
     }
 
     if (gameButtons) {
-        gameButtons.classList.remove('hidden');
+        gameButtons.classList.remove('hidden')
     }
+
+    // if (stayBtn) {
+    //     stayBtn.classList.remove('hidden')
+    //     newCardBtn.classList.remove('hidden')
+    // }
 }
+
+function showDealerCards(){
+
+}
+
+//--- OOP version
+
+// class Dealer {
+//     public hand:
+// }
