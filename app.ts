@@ -111,9 +111,6 @@ function createCardImage(imageSrc) {
     return cardImage;
 }
 
-//The method Math.random give a value between o and 0.999999999 by moltyply * 13 and adding 13 and using Math.floor 
-//it gives us a number between 0 and 13. that would work for any range of numbers.
-
 function startGame(){
 
     makeHeadersVisible()
