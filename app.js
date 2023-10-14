@@ -50,16 +50,6 @@ function initialDraw() {
         if (myHand) {
             var cards = data.cards;
             console.log(cards);
-            // myHand.appendChild(img)
-            // dealerHand.appendChild(img)
-            // img.src = data.cards[0].image
-            // img.src = data.cards[1].image
-            // // Add Tailwind classes to control size for each card that is drawn
-            // img.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
-            // let cardVal = data.cards[0].value
-            // hand.push(cardVal)
-            // calculateTotal()
-            // checkForBlackjack()
             getRandomCardForDealer(cards);
             getRandomCardForPlayer(cards);
         }
@@ -78,7 +68,6 @@ function getRandomCardForDealer(cards) {
         for (var i = 2; i <= 3; i++) {
             var cardImage = createCardImage(cards[i].image);
             dealerHand.appendChild(cardImage);
-            //dealerhand += card
             if (hand.length === 0) {
                 cardImage.src = cardBack;
             }
@@ -105,8 +94,6 @@ function createCardImage(imageSrc) {
     cardImage.src = imageSrc;
     return cardImage;
 }
-//The method Math.random give a value between o and 0.999999999 by moltyply * 13 and adding 13 and using Math.floor 
-//it gives us a number between 0 and 13. that would work for any range of numbers.
 function startGame() {
     makeHeadersVisible();
     hand = [];
@@ -222,7 +209,13 @@ function makeHeadersVisible() {
     //     newCardBtn.classList.remove('hidden')
     // }
 }
-function showDealerCards() {
+function showDealerCards(cards) {
+    if (dealerHand) {
+        for (var i = 2; i <= 3; i++) {
+            var cardImage = createCardImage(cards[i].image);
+            dealerHand.appendChild(cardImage);
+        }
+    }
 }
 //--- OOP version
 // class Dealer {

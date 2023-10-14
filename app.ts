@@ -79,7 +79,6 @@ function getRandomCardForDealer(cards) {
         for (let i = 2; i <= 3; i++) {
             const cardImage = createCardImage(cards[i].image)
             dealerHand.appendChild(cardImage)
-            //dealerhand += card
             if(hand.length === 0){
                 cardImage.src = cardBack
             }
@@ -110,7 +109,6 @@ function createCardImage(imageSrc) {
     cardImage.src = imageSrc;
     return cardImage;
 }
-
 function startGame(){
 
     makeHeadersVisible()
@@ -253,8 +251,14 @@ function makeHeadersVisible() {
     // }
 }
 
-function showDealerCards(){
-
+function showDealerCards(cards){
+    if(dealerHand){
+        for (let i = 2; i <= 3; i++) {
+            const cardImage = createCardImage(cards[i].image)
+            dealerHand.appendChild(cardImage)
+    
+        }
+    }
 }
 
 //--- OOP version
