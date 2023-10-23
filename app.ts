@@ -17,12 +17,18 @@ let dealerHand: Element | null = document.querySelector('.dealerHand')
 const cardBack: string = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
 
 let dealerCards: string[] = []
-let playerCards: string[] = []
+let playertCards: string[] = []
 
 //Player object for future feature
 let player: {name:string, chips: number} = {
     name: "you",
     chips: 100
+}
+
+//separate the types on a different file
+type card = {
+    code: string
+    image: string
 }
 
 // const hand = {
@@ -105,7 +111,7 @@ function getRandomCardForPlayer(cards) {
     }
 }
 
-function createCardImage(imageSrc) {
+function createCardImage(imageSrc: string) {
     //const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
     const cardImage = document.createElement('img');
     cardImage.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');

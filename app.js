@@ -1,22 +1,25 @@
-var hand = [];
-var computerHand = [];
-var hasBlackjack = false;
-var isAlive = true;
-var sum = 0;
-var message = "";
-var button = document.querySelector('.btn');
-var messageEl = document.querySelector('.message-el');
-var sumEl = document.querySelector('.sum-el');
-var cardsEl = document.querySelector('.cards-el');
-var newCardBtn = document.querySelector('.new-card');
-var stayBtn = document.querySelector('.stay-btn');
-var playerEl = document.querySelector('.player-el');
-var myHand = document.querySelector('.hand');
-var totalDiv = document.querySelector('.sum-el');
-var dealerHand = document.querySelector('.dealerHand');
-var cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg';
+"use strict";
+let hand = [];
+let computerHand = [];
+let hasBlackjack = false;
+let isAlive = true;
+let sum = 0;
+let message = "";
+let button = document.querySelector('.btn');
+let messageEl = document.querySelector('.message-el');
+let sumEl = document.querySelector('.sum-el');
+let cardsEl = document.querySelector('.cards-el');
+let newCardBtn = document.querySelector('.new-card');
+let stayBtn = document.querySelector('.stay-btn');
+let playerEl = document.querySelector('.player-el');
+let myHand = document.querySelector('.hand');
+let totalDiv = document.querySelector('.sum-el');
+let dealerHand = document.querySelector('.dealerHand');
+const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg';
+let dealerCards = [];
+let playertCards = [];
 //Player object for future feature
-var player = {
+let player = {
     name: "you",
     chips: 100
 };
@@ -37,24 +40,24 @@ if (stayBtn) {
     stayBtn.addEventListener('click', showDealerCards);
 }
 function initialDraw() {
-    var img = document.createElement('img');
+    let img = document.createElement('img');
     fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=4')
-        .then(function (response) {
+        .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         return response.json();
     })
-        .then(function (data) {
+        .then(data => {
         console.log(data);
         if (myHand) {
-            var cards = data.cards;
+            let cards = data.cards;
             console.log(cards);
             getRandomCardForDealer(cards);
             getRandomCardForPlayer(cards);
         }
     })
-        .catch(function (error) {
+        .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
         if (messageEl) {
             messageEl.innerText = 'Error fetching card. Please try again later.';
@@ -63,10 +66,10 @@ function initialDraw() {
 }
 //this refactorer version of above code more concise and mantainable
 function getRandomCardForDealer(cards) {
-    var cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg';
+    const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg';
     if (dealerHand) {
-        for (var i = 2; i <= 3; i++) {
-            var cardImage = createCardImage(cards[i].image);
+        for (let i = 2; i <= 3; i++) {
+            const cardImage = createCardImage(cards[i].image);
             dealerHand.appendChild(cardImage);
             if (hand.length === 0) {
                 cardImage.src = cardBack;
@@ -78,9 +81,9 @@ function getRandomCardForDealer(cards) {
 }
 function getRandomCardForPlayer(cards) {
     if (myHand) {
-        for (var i = 0; i < 2; i++) {
+        for (let i = 0; i < 2; i++) {
             hand.push(cards[i].code);
-            var cardImage = createCardImage(cards[i].image);
+            const cardImage = createCardImage(cards[i].image);
             myHand.appendChild(cardImage);
         }
         calculateTotal();
@@ -89,7 +92,7 @@ function getRandomCardForPlayer(cards) {
 }
 function createCardImage(imageSrc) {
     //const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
-    var cardImage = document.createElement('img');
+    const cardImage = document.createElement('img');
     cardImage.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
     cardImage.src = imageSrc;
     return cardImage;
@@ -119,29 +122,29 @@ function startGame() {
     initialDraw();
 }
 function drawOneCard() {
-    var img = document.createElement('img');
+    let img = document.createElement('img');
     fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=1')
-        .then(function (response) {
+        .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         return response.json();
     })
-        .then(function (data) {
+        .then(data => {
         console.log(data);
         if (myHand) {
-            var cards = data;
+            let cards = data;
             myHand.appendChild(img);
             img.src = data.cards[0].image;
             // Add Tailwind classes to control size for each card that is drawn
             img.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
-            var cardVal = data.cards[0].value;
+            let cardVal = data.cards[0].value;
             hand.push(cardVal);
             calculateTotal();
             checkForBlackjack();
         }
     })
-        .catch(function (error) {
+        .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
         if (messageEl) {
             messageEl.innerText = 'Error fetching card. Please try again later.';
@@ -156,8 +159,8 @@ function newCard() {
     }
 }
 function calculateTotal() {
-    var total = 0;
-    for (var i = 0; i <= hand.length - 1; i++) {
+    let total = 0;
+    for (let i = 0; i <= hand.length - 1; i++) {
         if (hand[i] === 'ACE') {
             if (total - 11 <= 21) {
                 total += 11;
@@ -190,11 +193,11 @@ function checkForBlackjack() {
     }
 }
 function makeHeadersVisible() {
-    var yourCardsHeader = document.querySelector('.yourCards');
-    var dealerCardsHeader = document.querySelector('.dealerCards');
-    var gameButtons = document.querySelector('.gameButtons');
-    var stayBtn = document.querySelector('.stay-btn');
-    var newCardBtn = document.querySelector('.new-card');
+    const yourCardsHeader = document.querySelector('.yourCards');
+    const dealerCardsHeader = document.querySelector('.dealerCards');
+    const gameButtons = document.querySelector('.gameButtons');
+    const stayBtn = document.querySelector('.stay-btn');
+    const newCardBtn = document.querySelector('.new-card');
     if (yourCardsHeader) {
         yourCardsHeader.classList.remove('hidden');
     }
@@ -204,15 +207,11 @@ function makeHeadersVisible() {
     if (gameButtons) {
         gameButtons.classList.remove('hidden');
     }
-    // if (stayBtn) {
-    //     stayBtn.classList.remove('hidden')
-    //     newCardBtn.classList.remove('hidden')
-    // }
 }
 function showDealerCards(cards) {
     if (dealerHand) {
-        for (var i = 2; i <= 3; i++) {
-            var cardImage = createCardImage(cards[i].image);
+        for (let i = 2; i <= 3; i++) {
+            const cardImage = createCardImage(cards[i].image);
             dealerHand.appendChild(cardImage);
         }
     }
@@ -221,3 +220,4 @@ function showDealerCards(cards) {
 // class Dealer {
 //     public hand:
 // }
+//# sourceMappingURL=app.js.map
