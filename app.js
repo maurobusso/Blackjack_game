@@ -18,6 +18,10 @@ let dealerHand = document.querySelector('.dealerHand');
 const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg';
 let dealerCards = [];
 let playertCards = [];
+let player = {
+    name: '',
+    chips: 10
+};
 // const hand = {
 //     player: [],
 //     dealer: [],
@@ -34,6 +38,7 @@ if (newCardBtn) {
 if (stayBtn) {
     stayBtn.addEventListener('click', showDealerCards);
 }
+//think about maybe doing just a single draw function and the running it multiple times
 function initialDraw() {
     let img = document.createElement('img');
     fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=4')

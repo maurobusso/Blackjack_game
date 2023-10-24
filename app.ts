@@ -19,17 +19,29 @@ const cardBack: string = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e
 let dealerCards: string[] = []
 let playertCards: string[] = []
 
+let player = {
+    name: '',
+    chips: 10
+}
+
 //separate the types on a different file
 type Card = {
-    code: string;
-    image: string;
+    code: string
+    image: string
     images: {
-      png: string;
-      svg: string;
+      png: string
+      svg: string
     }
-    suit: string;
-    value: string;
+    suit: string
+    value: string
   }
+
+type DeckData = {
+    success: boolean
+    deck_id: string
+    cards: []
+    remaining: number
+}
 
 // const hand = {
 //     player: [],
@@ -52,6 +64,7 @@ if(stayBtn){
     stayBtn.addEventListener('click', showDealerCards)
 }
 
+//think about maybe doing just a single draw function and the running it multiple times
 function initialDraw() {
     let img = document.createElement('img')
     fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=4')
