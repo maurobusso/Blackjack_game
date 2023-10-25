@@ -131,6 +131,7 @@ function createCardImage(imageSrc: string) {
     cardImage.src = imageSrc;
     return cardImage;
 }
+
 function startGame(){
 
     makeHeadersVisible()
