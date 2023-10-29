@@ -1,4 +1,5 @@
 var hand = [];
+var computerHand = [];
 var hasBlackjack = false;
 var isAlive = true;
 var sum = 0;
@@ -8,6 +9,7 @@ var messageEl = document.querySelector('.message-el');
 var sumEl = document.querySelector('.sum-el');
 var cardsEl = document.querySelector('.cards-el');
 var newCardBtn = document.querySelector('.new-card');
+var stayBtn = document.querySelector('.stay-btn');
 var playerEl = document.querySelector('.player-el');
 var myHand = document.querySelector('.hand');
 var totalDiv = document.querySelector('.sum-el');
@@ -30,6 +32,9 @@ if (button) {
 }
 if (newCardBtn) {
     newCardBtn.addEventListener('click', newCard);
+}
+if (stayBtn) {
+    stayBtn.addEventListener('click', showDealerCards);
 }
 function initialDraw() {
     var img = document.createElement('img');
@@ -73,6 +78,7 @@ function getRandomCardForDealer(cards) {
         for (var i = 2; i <= 3; i++) {
             var cardImage = createCardImage(cards[i].image);
             dealerHand.appendChild(cardImage);
+            //dealerhand += card
             if (hand.length === 0) {
                 cardImage.src = cardBack;
             }
@@ -173,7 +179,7 @@ function calculateTotal() {
                 total += 1;
             }
         }
-        else if (hand[i] === 'JACK' || hand[i] === 'QUEEN' || hand[i] === 'KING') {
+        if (hand[i] === 'JACK' || hand[i] === 'QUEEN' || hand[i] === 'KING') {
             total += 10;
         }
         else {
@@ -200,6 +206,8 @@ function makeHeadersVisible() {
     var yourCardsHeader = document.querySelector('.yourCards');
     var dealerCardsHeader = document.querySelector('.dealerCards');
     var gameButtons = document.querySelector('.gameButtons');
+    var stayBtn = document.querySelector('.stay-btn');
+    var newCardBtn = document.querySelector('.new-card');
     if (yourCardsHeader) {
         yourCardsHeader.classList.remove('hidden');
     }
@@ -209,4 +217,14 @@ function makeHeadersVisible() {
     if (gameButtons) {
         gameButtons.classList.remove('hidden');
     }
+    // if (stayBtn) {
+    //     stayBtn.classList.remove('hidden')
+    //     newCardBtn.classList.remove('hidden')
+    // }
 }
+function showDealerCards() {
+}
+//--- OOP version
+// class Dealer {
+//     public hand:
+// }
