@@ -18,11 +18,6 @@ let dealerHand = document.querySelector('.dealerHand');
 const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg';
 let dealerCards = [];
 let playertCards = [];
-//Player object for future feature
-let player = {
-    name: "you",
-    chips: 100
-};
 // const hand = {
 //     player: [],
 //     dealer: [],
@@ -183,7 +178,7 @@ function calculateTotal() {
 }
 function checkForBlackjack() {
     if (sum === 21 && messageEl) {
-        messageEl.innerText = 'BLACKJACK';
+        messageEl.innerText = 'BLACKJACK babe';
         player.chips++;
     }
     else if (sum > 21 && messageEl) {

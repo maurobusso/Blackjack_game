@@ -19,17 +19,17 @@ const cardBack: string = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e
 let dealerCards: string[] = []
 let playertCards: string[] = []
 
-//Player object for future feature
-let player: {name:string, chips: number} = {
-    name: "you",
-    chips: 100
-}
-
 //separate the types on a different file
-type card = {
-    code: string
-    image: string
-}
+type Card = {
+    code: string;
+    image: string;
+    images: {
+      png: string;
+      svg: string;
+    }
+    suit: string;
+    value: string;
+  }
 
 // const hand = {
 //     player: [],
@@ -225,7 +225,7 @@ function calculateTotal() {
 
 function checkForBlackjack() {
     if(sum === 21 && messageEl){
-        messageEl.innerText = 'BLACKJACK'
+        messageEl.innerText = 'BLACKJACK babe'
         player.chips ++
     }else if(sum > 21 && messageEl){
         messageEl.innerText = 'SORRY YOU ARE OUT!'
