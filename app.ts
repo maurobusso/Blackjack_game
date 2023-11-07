@@ -17,7 +17,7 @@ let dealerHand: Element | null = document.querySelector('.dealerHand')
 const cardBack: string = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
 
 let dealerCards: string[] = []
-let playertCards: string[] = []
+let playerCards: string[] = []
 
 let player = {
     name: '',
@@ -64,73 +64,6 @@ if(stayBtn){
     stayBtn.addEventListener('click', showDealerCards)
 }
 
-//think about maybe doing just a single draw function and the running it multiple times
-function initialDraw() {
-    let img = document.createElement('img')
-    fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=4')
-        .then(response => {
-            if (!response.ok) {
-            throw new Error('Network response was not ok')
-            }
-            return response.json()
-        })
-        .then(data => {
-            console.log(data)
-            if(myHand){
-
-                let cards = data.cards
-                console.log(cards)
-
-                getRandomCardForDealer(cards)
-                getRandomCardForPlayer(cards)
-            }
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error)
-            if(messageEl){
-                messageEl.innerText = 'Error fetching card. Please try again later.'
-            }
-        })
-}
-
-//this refactorer version of above code more concise and mantainable
-
-function getRandomCardForDealer(cards) {
-    const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
-    if (dealerHand) {
-        for (let i = 2; i <= 3; i++) {
-            const cardImage = createCardImage(cards[i].image)
-            dealerHand.appendChild(cardImage)
-            if(hand.length === 0){
-                cardImage.src = cardBack
-            }
-        }
-
-        calculateTotal();
-        checkForBlackjack();
-    }
-}
-
-function getRandomCardForPlayer(cards) {
-    if (myHand) {
-        for (let i = 0; i < 2; i++) {
-            hand.push(cards[i].code)
-            const cardImage = createCardImage(cards[i].image)
-            myHand.appendChild(cardImage)
-        }
-
-        calculateTotal();
-        checkForBlackjack();
-    }
-}
-
-function createCardImage(imageSrc: string) {
-    //const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
-    const cardImage = document.createElement('img');
-    cardImage.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
-    cardImage.src = imageSrc;
-    return cardImage;
-}
 
 function startGame(){
 
@@ -163,6 +96,96 @@ function startGame(){
 
     initialDraw()
     
+}
+
+
+//think about maybe doing just a single draw function and the running it multiple times
+// function initialDraw() {
+//     fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=4')
+//         .then(response => {
+//             if (!response.ok) {
+//             throw new Error('Network response was not ok')
+//             }
+//             return response.json()
+//         })
+//         .then(data => {
+//             console.log(data)
+//             if(myHand){
+
+//                 let cards = data.cards
+//                 console.log(cards)
+
+//                 getRandomCardForDealer(cards)
+//                 getRandomCardForPlayer(cards)
+//             }
+//         })
+//         .catch(error => {
+//             console.error('There was a problem with the fetch operation:', error)
+//             if(messageEl){
+//                 messageEl.innerText = 'Error fetching card. Please try again later.'
+//             }
+//         })
+// }
+
+function initialDraw() {
+    fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=2')
+        .then(response => {
+            if (!response.ok) {
+            throw new Error('Network response was not ok')
+            }
+            return response.json()
+        })
+        .then(data => {
+            playerCards.push(data.cards)
+            if(playerCards.length > 0){
+                dealerCards.push(data.cards)
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error)
+            if(messageEl){
+                messageEl.innerText = 'Error fetching card. Please try again later.'
+            }
+        })
+}
+
+//this refactorer version of above code more concise and mantainable
+
+function getRandomCardForDealer(cards: any) {
+    const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
+    if (dealerHand) {
+        for (let i = 2; i <= 3; i++) {
+            const cardImage = createCardImage(cards[i].image)
+            dealerHand.appendChild(cardImage)
+            if(hand.length === 0){
+                cardImage.src = cardBack
+            }
+        }
+
+        calculateTotal();
+        checkForBlackjack();
+    }
+}
+
+function getRandomCardForPlayer(cards: any) {
+    if (myHand) {
+        for (let i = 0; i < 2; i++) {
+            hand.push(cards[i].code)
+            const cardImage = createCardImage(cards[i].image)
+            myHand.appendChild(cardImage)
+        }
+
+        calculateTotal();
+        checkForBlackjack();
+    }
+}
+
+function createCardImage(imageSrc: string) {
+    //const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
+    const cardImage = document.createElement('img');
+    cardImage.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
+    cardImage.src = imageSrc;
+    return cardImage;
 }
 
 function drawOneCard(){
@@ -269,7 +292,7 @@ function makeHeadersVisible() {
     }
 }
 
-function showDealerCards(cards){
+function showDealerCards(cards: any){
     if(dealerHand){
         for (let i = 2; i <= 3; i++) {
             const cardImage = createCardImage(cards[i].image)
