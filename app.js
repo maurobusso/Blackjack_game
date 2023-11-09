@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 let hand = [];
 let computerHand = [];
 let hasBlackjack = false;
@@ -88,23 +97,28 @@ function startGame() {
 //         })
 // }
 function initialDraw() {
-    fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=2')
-        .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            while (playerCards.length < 2 || dealerCards.length < 2) {
+                const response = yield fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=2');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = yield response.json();
+                console.log(data);
+                if (playerCards.length < 2) {
+                    playerCards.push(...data.cards);
+                }
+                else if (dealerCards.length < 2) {
+                    dealerCards.push(...data.cards);
+                }
+            }
         }
-        return response.json();
-    })
-        .then(data => {
-        playerCards.push(data.cards);
-        if (playerCards.length > 0) {
-            dealerCards.push(data.cards);
-        }
-    })
-        .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-        if (messageEl) {
-            messageEl.innerText = 'Error fetching card. Please try again later.';
+        catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+            if (messageEl) {
+                messageEl.innerText = 'Error fetching cards. Please try again later.';
+            }
         }
     });
 }

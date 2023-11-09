@@ -127,26 +127,28 @@ function startGame(){
 //         })
 // }
 
-function initialDraw() {
-    fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=2')
-        .then(response => {
+async function initialDraw() {
+    try {
+        while (playerCards.length < 2 || dealerCards.length < 2) {
+            const response = await fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=2');
             if (!response.ok) {
-            throw new Error('Network response was not ok')
+                throw new Error('Network response was not ok');
             }
-            return response.json()
-        })
-        .then(data => {
-            playerCards.push(data.cards)
-            if(playerCards.length > 0){
-                dealerCards.push(data.cards)
+            const data = await response.json();
+            console.log(data);
+
+            if (playerCards.length < 2) {
+                playerCards.push(...data.cards);
+            } else if (dealerCards.length < 2) {
+                dealerCards.push(...data.cards);
             }
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error)
-            if(messageEl){
-                messageEl.innerText = 'Error fetching card. Please try again later.'
-            }
-        })
+        }
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+        if (messageEl) {
+            messageEl.innerText = 'Error fetching cards. Please try again later.';
+        }
+    }
 }
 
 //this refactorer version of above code more concise and mantainable
