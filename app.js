@@ -106,20 +106,10 @@ function getRandomCardForDealer(cards) {
         checkForBlackjack();
     }
 }
-// function getRandomCardForPlayer(cards: any) {
-//     if (myHand) {
-//         console.log("done")
-//         for (let i = 0; i < 2; i++) {
-//             playerCards.push(cards[i].code)
-//             const cardImage = createCardImage(cards[i].image)
-//             myHand.appendChild(cardImage)
-//         }
-//         calculateTotal();
-//         checkForBlackjack();
-//     }
-// }
 function displayCard() {
     if (playerCards && myHand) {
+        //reset content of div
+        myHand.innerHTML = '';
         for (let i = 0; i < playerCards.length; i++) {
             const cardImage = createCardImage(playerCards[i]);
             myHand.appendChild(cardImage);
@@ -141,6 +131,7 @@ function drawOneCard() {
             }
             const data = yield response.json();
             playerCards.push(data.cards[0].image);
+            displayCard();
         }
         catch (error) {
             console.error('There was a problem with the fetch operation:', error);
@@ -154,7 +145,6 @@ function drawOneCard() {
 function newCard() {
     if (isAlive === true &&
         hasBlackjack === false) {
-        console.log("done");
         drawOneCard();
     }
 }
