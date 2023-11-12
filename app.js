@@ -8,7 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-let hand = [];
 let computerHand = [];
 let hasBlackjack = false;
 let isAlive = true;
@@ -21,8 +20,8 @@ let cardsEl = document.querySelector('.cards-el');
 let newCardBtn = document.querySelector('.new-card');
 let stayBtn = document.querySelector('.stay-btn');
 let playerEl = document.querySelector('.player-el');
-let myHand = document.querySelector('.hand');
 let totalDiv = document.querySelector('.sum-el');
+let myHand = document.querySelector('.hand');
 let dealerHand = document.querySelector('.dealerHand');
 const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg';
 let dealerCards = [];
@@ -45,7 +44,7 @@ if (stayBtn) {
 }
 function startGame() {
     makeHeadersVisible();
-    hand = [];
+    playerCards = [];
     sum = 0;
     hasBlackjack = false;
     isAlive = true;
@@ -67,48 +66,21 @@ function startGame() {
     }
     initialDraw();
 }
-//think about maybe doing just a single draw function and the running it multiple times
-// function initialDraw() {
-//     fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=4')
-//         .then(response => {
-//             if (!response.ok) {
-//             throw new Error('Network response was not ok')
-//             }
-//             return response.json()
-//         })
-//         .then(data => {
-//             console.log(data)
-//             if(myHand){
-//                 let cards = data.cards
-//                 console.log(cards)
-//                 getRandomCardForDealer(cards)
-//                 getRandomCardForPlayer(cards)
-//             }
-//         })
-//         .catch(error => {
-//             console.error('There was a problem with the fetch operation:', error)
-//             if(messageEl){
-//                 messageEl.innerText = 'Error fetching card. Please try again later.'
-//             }
-//         })
-// }
+//draw for player
 function initialDraw() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            while (playerCards.length < 2 || dealerCards.length < 2) {
+            while (playerCards.length < 2 && dealerCards.length < 2) {
                 const response = yield fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=2');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const data = yield response.json();
-                console.log(data);
-                if (playerCards.length < 2) {
-                    playerCards.push(...data.cards);
-                }
-                else if (dealerCards.length < 2) {
-                    dealerCards.push(...data.cards);
-                }
+                playerCards.push(data.cards[0].image);
+                dealerCards.push(data.cards[1].image);
             }
+            displayCard();
+            calculateTotal();
         }
         catch (error) {
             console.error('There was a problem with the fetch operation:', error);
@@ -125,7 +97,7 @@ function getRandomCardForDealer(cards) {
         for (let i = 2; i <= 3; i++) {
             const cardImage = createCardImage(cards[i].image);
             dealerHand.appendChild(cardImage);
-            if (hand.length === 0) {
+            if (playerCards.length === 0) {
                 cardImage.src = cardBack;
             }
         }
@@ -136,12 +108,20 @@ function getRandomCardForDealer(cards) {
 function getRandomCardForPlayer(cards) {
     if (myHand) {
         for (let i = 0; i < 2; i++) {
-            hand.push(cards[i].code);
+            playerCards.push(cards[i].code);
             const cardImage = createCardImage(cards[i].image);
             myHand.appendChild(cardImage);
         }
         calculateTotal();
         checkForBlackjack();
+    }
+}
+function displayCard() {
+    if (playerCards && myHand) {
+        for (let i = 0; i < playerCards.length; i++) {
+            const cardImage = createCardImage(playerCards[i]);
+            myHand.appendChild(cardImage);
+        }
     }
 }
 function createCardImage(imageSrc) {
@@ -163,13 +143,12 @@ function drawOneCard() {
             .then(data => {
             console.log(data);
             if (myHand) {
-                let cards = data;
                 myHand.appendChild(img);
                 img.src = data.cards[0].image;
                 // Add Tailwind classes to control size for each card that is drawn
                 img.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
                 let cardVal = data.cards[0].value;
-                hand.push(cardVal);
+                playerCards.push(cardVal);
                 calculateTotal();
                 checkForBlackjack();
             }
@@ -191,8 +170,8 @@ function newCard() {
 }
 function calculateTotal() {
     let total = 0;
-    for (let i = 0; i <= hand.length - 1; i++) {
-        if (hand[i] === 'ACE') {
+    for (let i = 0; i <= playerCards.length - 1; i++) {
+        if (playerCards[i].value === 'ACE') {
             if (total - 11 <= 21) {
                 total += 11;
             }
@@ -200,11 +179,11 @@ function calculateTotal() {
                 total += 1;
             }
         }
-        if (hand[i] === 'JACK' || hand[i] === 'QUEEN' || hand[i] === 'KING') {
+        if (playerCards[i].value === 'JACK' || playerCards[i].value === 'QUEEN' || playerCards[i].value === 'KING') {
             total += 10;
         }
         else {
-            total += parseInt(hand[i]);
+            total += parseInt(playerCards[i].value);
         }
     }
     if (sumEl) {
@@ -239,16 +218,12 @@ function makeHeadersVisible() {
         gameButtons.classList.remove('hidden');
     }
 }
-function showDealerCards(cards) {
-    if (dealerHand) {
-        for (let i = 2; i <= 3; i++) {
-            const cardImage = createCardImage(cards[i].image);
-            dealerHand.appendChild(cardImage);
+function showDealerCards() {
+    if (dealerCards) {
+        for (let i = 0; i <= dealerCards.length; i++) {
+            const cardImage = createCardImage(dealerCards[i].image);
+            dealerCards.appendChild(cardImage);
         }
     }
 }
-//--- OOP version
-// class Dealer {
-//     public hand:
-// }
 //# sourceMappingURL=app.js.map
