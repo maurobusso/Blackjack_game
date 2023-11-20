@@ -66,6 +66,7 @@ function startGame(){
     makeHeadersVisible()
 
     playerCards = []
+    dealerCards = []
     sum = 0  
     hasBlackjack = false
     isAlive = true
@@ -134,18 +135,19 @@ function getRandomCardForDealer(cards: any) {
     }
 }
 
-function getRandomCardForPlayer(cards: any) {
-    if (myHand) {
-        for (let i = 0; i < 2; i++) {
-            playerCards.push(cards[i].code)
-            const cardImage = createCardImage(cards[i].image)
-            myHand.appendChild(cardImage)
-        }
+// function getRandomCardForPlayer(cards: any) {
+//     if (myHand) {
+//         console.log("done")
+//         for (let i = 0; i < 2; i++) {
+//             playerCards.push(cards[i].code)
+//             const cardImage = createCardImage(cards[i].image)
+//             myHand.appendChild(cardImage)
+//         }
 
-        calculateTotal();
-        checkForBlackjack();
-    }
-}
+//         calculateTotal();
+//         checkForBlackjack();
+//     }
+// }
 
 function displayCard(){
     if(playerCards && myHand){
@@ -164,46 +166,28 @@ function createCardImage(imageSrc: any) {
 }
 
 async function drawOneCard(){
-    let img = document.createElement('img')
-    fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=1')
-        .then(response => {
+    try{
+        const response = await fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=1');
             if (!response.ok) {
-            throw new Error('Network response was not ok')
+                throw new Error('Network response was not ok');
             }
-            return response.json()
-        })
-        .then(data => {
-            console.log(data)
-            if(myHand){
-                myHand.appendChild(img)
-                
-                img.src = data.cards[0].image
-    
-                // Add Tailwind classes to control size for each card that is drawn
-                img.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48')
-    
-                let cardVal = data.cards[0].value
-    
-                playerCards.push(cardVal)
-    
-                calculateTotal()
-                checkForBlackjack()
-            }
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error)
-            if(messageEl){
-                messageEl.innerText = 'Error fetching card. Please try again later.'
-            }
-        })
+            const data = await response.json();
+            
+            playerCards.push(data.cards[0].image)
+    }catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+        if (messageEl) {
+            messageEl.innerText = 'Error fetching cards. Please try again later.';
+        }
+    }
+    console.log(playerCards)
 }
-
 
 function newCard(){
     if(isAlive === true &&
-       hasBlackjack === false &&
-       sum < 21 
+       hasBlackjack === false
        ){
+        console.log("done")
         drawOneCard()
     }
 }
@@ -263,10 +247,10 @@ function makeHeadersVisible() {
 }
 
 function showDealerCards(){
-    if(dealerCards){
+    if(dealerHand){
         for (let i = 0; i <= dealerCards.length; i++) {
-            const cardImage = createCardImage(dealerCards[i].image)
-            dealerCards.appendChild(cardImage)
+            const cardImage = createCardImage(dealerCards[i])
+            dealerHand.appendChild(cardImage)
         }
     }
 }
