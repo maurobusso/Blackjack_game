@@ -104,7 +104,7 @@ async function initialDraw() {
             }
             const data = await response.json();
             
-            playerCards.push(data.cards[0].image)
+            playerCards.push(data.cards[0])
             dealerCards.push(data.cards[1].image)
         }
         displayCard()
@@ -141,7 +141,7 @@ function displayCard(){
         myHand.innerHTML = ''
 
         for(let i = 0; i < playerCards.length; i++){
-            const cardImage = createCardImage(playerCards[i])
+            const cardImage = createCardImage(playerCards[i].image)
             myHand.appendChild(cardImage)
         }
     }
@@ -162,9 +162,10 @@ async function drawOneCard(){
             }
             const data = await response.json();
             
-            playerCards.push(data.cards[0].image)
+            playerCards.push(data.cards[0])
 
             displayCard()
+            calculateTotal()
     }catch (error) {
         console.error('There was a problem with the fetch operation:', error);
         if (messageEl) {
@@ -202,11 +203,12 @@ function calculateTotal() {
         sumEl.innerText = total.toString()
     }
     sum = total
+    checkForBlackjack()
 }
 
 function checkForBlackjack() {
     if(sum === 21 && messageEl){
-        messageEl.innerText = 'BLACKJACK babe'
+        messageEl.innerText = 'BLACKJACK!!!'
         player.chips ++
     }else if(sum > 21 && messageEl){
         messageEl.innerText = 'SORRY YOU ARE OUT!'
