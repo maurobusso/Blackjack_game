@@ -8,7 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-let computerHand = [];
 let hasBlackjack = false;
 let isAlive = true;
 let sum = 0;
@@ -21,6 +20,7 @@ let newCardBtn = document.querySelector('.new-card');
 let stayBtn = document.querySelector('.stay-btn');
 let playerEl = document.querySelector('.player-el');
 let totalDiv = document.querySelector('.sum-el');
+//let computerHand: string[] = []
 let myHand = document.querySelector('.hand');
 let dealerHand = document.querySelector('.dealerHand');
 const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg';
@@ -77,6 +77,7 @@ function initialDraw() {
                     throw new Error('Network response was not ok');
                 }
                 const data = yield response.json();
+                //console.log(data)
                 playerCards.push(data.cards[0]);
                 dealerCards.push(data.cards[1].image);
             }
@@ -92,20 +93,20 @@ function initialDraw() {
     });
 }
 //this refactorer version of above code more concise and mantainable
-function getRandomCardForDealer(cards) {
-    const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg';
-    if (dealerHand) {
-        for (let i = 2; i <= 3; i++) {
-            const cardImage = createCardImage(cards[i].image);
-            dealerHand.appendChild(cardImage);
-            if (playerCards.length === 0) {
-                cardImage.src = cardBack;
-            }
-        }
-        calculateTotal();
-        checkForBlackjack();
-    }
-}
+// function getRandomCardForDealer(cards: any) {
+//     const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
+//     if (dealerHand) {
+//         for (let i = 2; i <= 3; i++) {
+//             const cardImage = createCardImage(cards[i].image)
+//             dealerHand.appendChild(cardImage)
+//             if(playerCards.length === 0){
+//                 cardImage.src = cardBack
+//             }
+//         }
+//         calculateTotal();
+//         checkForBlackjack();
+//     }
+// }
 function displayCard() {
     if (playerCards && myHand) {
         //reset content of div
@@ -116,6 +117,16 @@ function displayCard() {
         }
     }
 }
+// function displayCard(array: Card[]){
+//     if(array && myHand){
+//         //reset content of div
+//         myHand.innerHTML = ''
+//         for(let i = 0; i < array.length; i++){
+//             const cardImage = createCardImage(array[i].image)
+//             myHand.appendChild(cardImage)
+//         }
+//     }
+// }
 function createCardImage(imageSrc) {
     const cardImage = document.createElement('img');
     cardImage.classList.add('w-20', 'h-26', 'md:w-36', 'md:h-48');
@@ -173,6 +184,9 @@ function calculateTotal() {
     sum = total;
     checkForBlackjack();
 }
+//should get two params, dealer cards and player hands
+//compare the sum 
+//and spit the message
 function checkForBlackjack() {
     if (sum === 21 && messageEl) {
         messageEl.innerText = 'BLACKJACK!!!';
@@ -202,10 +216,11 @@ function makeHeadersVisible() {
 }
 function showDealerCards() {
     if (dealerHand) {
-        for (let i = 0; i <= dealerCards.length; i++) {
+        for (let i = 0; i < dealerCards.length; i++) {
             const cardImage = createCardImage(dealerCards[i]);
             dealerHand.appendChild(cardImage);
         }
     }
+    //console.log(dealerCards)
 }
 //# sourceMappingURL=app.js.map

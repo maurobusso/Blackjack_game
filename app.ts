@@ -1,4 +1,3 @@
-let computerHand: string[] = []
 let hasBlackjack: boolean = false
 let isAlive: boolean = true 
 let sum: number = 0
@@ -12,6 +11,7 @@ let stayBtn: Element | null = document.querySelector('.stay-btn')
 let playerEl: Element | null = document.querySelector('.player-el')
 let totalDiv: Element | null = document.querySelector('.sum-el')
 
+//let computerHand: string[] = []
 let myHand: Element | null = document.querySelector('.hand')
 let dealerHand: Element | null = document.querySelector('.dealerHand')
 
@@ -103,6 +103,7 @@ async function initialDraw() {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
+            //console.log(data)
             
             playerCards.push(data.cards[0])
             dealerCards.push(data.cards[1].image)
@@ -119,21 +120,21 @@ async function initialDraw() {
 
 //this refactorer version of above code more concise and mantainable
 
-function getRandomCardForDealer(cards: any) {
-    const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
-    if (dealerHand) {
-        for (let i = 2; i <= 3; i++) {
-            const cardImage = createCardImage(cards[i].image)
-            dealerHand.appendChild(cardImage)
-            if(playerCards.length === 0){
-                cardImage.src = cardBack
-            }
-        }
+// function getRandomCardForDealer(cards: any) {
+//     const cardBack = 'https://i.pinimg.com/originals/0a/c9/80/0ac980faf82b5e7c51ad33539d98d218--black-goddess-vintage-playing-cards.jpg'
+//     if (dealerHand) {
+//         for (let i = 2; i <= 3; i++) {
+//             const cardImage = createCardImage(cards[i].image)
+//             dealerHand.appendChild(cardImage)
+//             if(playerCards.length === 0){
+//                 cardImage.src = cardBack
+//             }
+//         }
 
-        calculateTotal();
-        checkForBlackjack();
-    }
-}
+//         calculateTotal();
+//         checkForBlackjack();
+//     }
+// }
 
 function displayCard(){
     if(playerCards && myHand){
@@ -146,6 +147,18 @@ function displayCard(){
         }
     }
 }
+
+// function displayCard(array: Card[]){
+//     if(array && myHand){
+//         //reset content of div
+//         myHand.innerHTML = ''
+
+//         for(let i = 0; i < array.length; i++){
+//             const cardImage = createCardImage(array[i].image)
+//             myHand.appendChild(cardImage)
+//         }
+//     }
+// }
 
 function createCardImage(imageSrc: any) {
     const cardImage = document.createElement('img');
@@ -206,6 +219,9 @@ function calculateTotal() {
     checkForBlackjack()
 }
 
+//should get two params, dealer cards and player hands
+//compare the sum 
+//and spit the message
 function checkForBlackjack() {
     if(sum === 21 && messageEl){
         messageEl.innerText = 'BLACKJACK!!!'
@@ -240,9 +256,10 @@ function makeHeadersVisible() {
 
 function showDealerCards(){
     if(dealerHand){
-        for (let i = 0; i <= dealerCards.length; i++) {
+        for (let i = 0; i < dealerCards.length; i++) {
             const cardImage = createCardImage(dealerCards[i])
             dealerHand.appendChild(cardImage)
         }
     }
+    //console.log(dealerCards)
 }
